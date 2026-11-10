@@ -14,19 +14,7 @@ import typing
 import uuid
 from collections.abc import Mapping as _Mapping
 from enum import Enum as EnumType
-
-try:
-    from typing import Unpack
-except ImportError:  # Remove when dropping Python 3.10
-    from typing_extensions import Unpack
-
-# Remove when dropping Python 3.10
-try:
-    from backports.datetime_fromisoformat import MonkeyPatch
-except ImportError:
-    pass
-else:
-    MonkeyPatch.patch_fromisoformat()
+from typing import Unpack
 
 from marshmallow import class_registry, types, utils, validate
 from marshmallow.constants import missing as missing_
@@ -710,7 +698,9 @@ class Pluck(Nested):
     @property
     def _field_data_key(self) -> str:
         only_field = self.schema.fields[self.field_name]
-        return only_field.data_key or self.field_name
+        return (
+            only_field.data_key if only_field.data_key is not None else self.field_name
+        )
 
     def _serialize(self, nested_obj, attr, obj, **kwargs):
         ret = super()._serialize(nested_obj, attr, obj, **kwargs)

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.4.0 (unreleased)
+4.4.0 (2026-11-03)
 ------------------
 
 Features:
@@ -14,6 +14,12 @@ Bug fixes:
   (not `ValueError`) for NaN in `TimeDelta <marshmallow.fields.TimeDelta>`
   (:pr:`3004`).
   Thanks :user:`vidigoat` for the PR.
+- Fix `Pluck` handling of empty data_key (:pr:`3082`).
+
+Other changes:
+
+- Drop support for Python 3.10.
+- Test against Python 3.15.
 
 4.3.1 (2026-08-08)
 ------------------
@@ -1457,7 +1463,7 @@ Other changes:
 
 Support:
 
-- Add `Code of Conduct <https://marshmallow.readthedocs.io/en/dev/code_of_conduct.html>`_.
+- Add `Code of Conduct <https://github.com/marshmallow-code/.github/blob/main/CODE_OF_CONDUCT.md>`_.
 
 
 3.0.0b6 (2018-01-02)
