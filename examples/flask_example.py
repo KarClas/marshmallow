@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.11"
 # dependencies = [
 #     "flask",
 #     "flask-sqlalchemy>=3.1.1",
@@ -9,7 +9,7 @@
 # ///
 from __future__ import annotations
 
-import datetime
+import datetime as dt
 
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
@@ -42,7 +42,7 @@ class Quote(db.Model):  # type: ignore[name-defined]
     content: Mapped[str] = mapped_column(nullable=False)
     author_id: Mapped[int] = mapped_column(db.ForeignKey(Author.id))
     author: Mapped[Author] = relationship(backref=db.backref("quotes", lazy="dynamic"))
-    posted_at: Mapped[datetime.datetime]
+    posted_at: Mapped[dt.datetime]
 
 
 ##### SCHEMAS #####
@@ -148,7 +148,7 @@ def new_quote():
     quote = Quote(
         content=data["content"],
         author=author,
-        posted_at=datetime.datetime.now(datetime.UTC),
+        posted_at=dt.datetime.now(dt.UTC),
     )
     db.session.add(quote)
     db.session.commit()

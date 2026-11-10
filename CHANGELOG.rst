@@ -1,6 +1,39 @@
 Changelog
 =========
 
+4.4.0 (2026-11-03)
+------------------
+
+Features:
+
+- Simplify `get_value` to match actual usage (:pr:`3024`).
+
+Bug fixes:
+
+- Raise `ValidationError <marshmallow.exceptions.ValidationError>`
+  (not `ValueError`) for NaN in `TimeDelta <marshmallow.fields.TimeDelta>`
+  (:pr:`3004`).
+  Thanks :user:`vidigoat` for the PR.
+- Fix `Pluck` handling of empty data_key (:pr:`3082`).
+
+Other changes:
+
+- Drop support for Python 3.10.
+- Test against Python 3.15.
+
+4.3.1 (2026-08-08)
+------------------
+
+Features:
+
+- If `by_value` is enabled on an enum with a `None` value `allow_none` now defaults to `True`.
+  Thanks :user:`GeraldineGalindo` for the suggestion (:issue:`2985`).
+
+Bug fixes:
+
+- `marshmallow.validate.URL` accepts a fragment that follows an empty path,
+  e.g. ``https://example.com#frag`` (:pr:`3016`). Thanks :user:`hdimer` for the PR.
+
 4.3.0 (2026-04-03)
 ------------------
 
@@ -1430,7 +1463,7 @@ Other changes:
 
 Support:
 
-- Add `Code of Conduct <https://marshmallow.readthedocs.io/en/dev/code_of_conduct.html>`_.
+- Add `Code of Conduct <https://github.com/marshmallow-code/.github/blob/main/CODE_OF_CONDUCT.md>`_.
 
 
 3.0.0b6 (2018-01-02)
